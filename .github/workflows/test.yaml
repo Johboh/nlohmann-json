@@ -1,0 +1,27 @@
+name: PlatformIO CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example: [examples/Simple/Simple.ino]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.platformio/.cache
+          key: ${{ runner.os }}-pio
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install PlatformIO Core
+        run: pip install --upgrade platformio
+
+      - name: Build PlatformIO examples
+        run: pio ci --lib="." --board=lolin_c3_mini --project-option="build_unflags = -std=gnu++11" --project-option="build_flags = -std=gnu++17" --project-option="platform=espressif32@6.4.0" --project-option="lib_ldf_mode=deep"
+        env:
+          PLATFORMIO_CI_SRC: ${{ matrix.example }}

@@ -1,0 +1,23 @@
+{
+  "name": "nlohmann-json",
+  "keywords": "esp32, esp8266, json",
+  "description": "Arduino/ESP-IDF library wrapper for https://github.com/nlohmann/json",
+  "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/schema/library.json",
+  "authors":
+  {
+    "name": "Johan Böhlin"
+  },
+  "version": "3.11.3",
+  "license": "MIT",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/Johboh/nlohmann-json.git"
+  },
+  "frameworks": ["espidf", "arduino"],
+  "platforms": ["espressif8266", "espressif32"],
+  "build": {
+    "includeDir": "single_include"
+  },
+  "dependencies": []
+}
