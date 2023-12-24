@@ -1,0 +1,6 @@
+dependencies:
+  espidf-component:
+    #version: ">=3.11.3"
+    # Remove path and enable version to use nlohmann-json from repository
+    # Also name the dependency "johboh/nlohmann-json"
+    path: ../../../../espidf-component
