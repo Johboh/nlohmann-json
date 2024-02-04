@@ -1,4 +1,4 @@
-name: Push to Espressif Component Service
+name: Push nlohmann-json to Espressif Component Service
 on:
   release:
     types: [created]
@@ -9,11 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build_examples_for_verification]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4.1.1
+
+      - name: Remove existing
+        run: rm -f CMakeLists.txt idf_component.yml LICENSE
+
+      - name: espidf-component content
+        run: mv espidf-component/* ./
+
+      - name: Replace ./.. with ./
+        run: sed -i 's|./../|./|g' CMakeLists.txt
+
       - name: Upload component to component registry
-        uses: espressif/github-actions/upload_components@master
+        uses: espressif/upload-components-ci-action/@v1
         with:
-          directories: espidf-component
           name: "nlohmann-json"
           namespace: "johboh"
           api_token: ${{ secrets.ESP_IDF_COMPONENT_API_TOKEN }}
