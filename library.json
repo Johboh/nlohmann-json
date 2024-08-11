@@ -20,5 +20,17 @@
     "srcDir": "single_include",
     "includeDir": "single_include"
   },
+  "examples": [
+    {
+      "name": "Arduino",
+      "base": "examples/arduino/simple",
+      "files": ["simple.ino"]
+    },
+    {
+      "name": "ESP-IDF",
+      "base": "examples/espidf/simple/main",
+      "files": ["main.cpp"]
+    }
+  ],
   "dependencies": []
 }
