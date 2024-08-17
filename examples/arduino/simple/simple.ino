@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <nlohmann-json.hpp>
+#include <nlohmann/json.hpp>
 
 void setup() {
   nlohmann::json doc;
